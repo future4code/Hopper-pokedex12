@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../components/Header'
+import Header from '../../components/header/Header'
 import { useNavigate } from "react-router-dom"
-import pokedex from "../assets/pokedex.svg"
+import pokedex from "../../assets/pokedex.svg"
 
 const HomePage = () => {
 
