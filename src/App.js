@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-function App() {
-=======
 import Router from "./router/Router";
 import { createGlobalStyle } from "styled-components";
 
@@ -18,7 +15,6 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
 
->>>>>>> master
   return (
     <div>
       <GlobalStyle />
