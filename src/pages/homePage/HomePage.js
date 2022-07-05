@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from '../../components/header/Header'
 import { useNavigate } from "react-router-dom"
 import pokedex from "../../assets/pokedex.svg"
+import { Div, Container } from './Styles';
 
 
 const HomePage = () => {
@@ -49,20 +50,21 @@ console.log(pokemon)
  const navigate = useNavigate()
 
   return (
-    <div>
+    <Container>
       <Header onClick={() => navigate('/pokedex')} src={pokedex}/>
-      <p>Clique em mim</p>
-    
+      <Div>    
         {pokemon && pokemon.map((bananinha)=>{
         return(
           <div key={bananinha.id}>
-            <p>{bananinha.name}</p>
           <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${bananinha.id}.png`}/>
+            <p>{bananinha.name}</p>
+            <button>Capturar pokemón</button>
           </div>
         )
         })}
+        </Div>
       
-    </div>
+    </Container>
   )
 }
 
