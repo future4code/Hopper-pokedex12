@@ -14,9 +14,7 @@ export const Container = styled.div`
         color: #feca04;
         cursor: pointer;
         img {
-          width: 6em;
-          height: 10vh;
-          padding: 10px;
+          width: 9em;
         }
       }
     }
