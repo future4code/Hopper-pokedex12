@@ -10,7 +10,7 @@ const HomePage = () => {
   
   const navigate = useNavigate()
   
-  const [pokemon, setPokemon ] = useState ([])
+  const [pokemon, setPokemon] = useState ([])
   const [isLoading, setIsLoading] = useState(false)
   const [pokemaos, setPokemaos] = useState([])
 
@@ -31,7 +31,6 @@ const HomePage = () => {
         .then((response)=>{
           getPokemon.push(response.data)
           setPokemon(getPokemon)
-          localStorage.setItem('pokemaos', JSON.stringify(pokemaos))
           setTimeout(() => {
             setIsLoading(false)
           }, 1500)
@@ -44,15 +43,24 @@ const HomePage = () => {
     })
   }
 
+  pokemon.sort((anterior, novo) => anterior.id - novo.id)
+
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('pokemaos'))
-    data && setPokemaos(data)
-    console.log(data)
+    data.length > 0 && setPokemaos(data)
   }, [])
 
-  const teste = (poke) => {
-    setPokemaos([...pokemaos, poke])
-    // localStorage.setItem('pokemaos', JSON.stringify(pokemaos))
+  const capturaPoke = (poke) => {
+    if(pokemaos.length === 0){
+      setPokemaos([...pokemaos, poke])
+    } else {
+      const taNaPokedex = pokemaos.find(item => item.name === poke.name)
+      if(taNaPokedex) {
+        alert('Este pokémon já está em sua pokedex')
+      } else {
+        setPokemaos([...pokemaos, poke])
+      }
+    }
   }
 
   useEffect(() => {
@@ -63,14 +71,14 @@ const HomePage = () => {
     <Container>
       <Header onClick={() => navigate('/pokedex')} src={pokedex}/>
       <Div>
-        { isLoading 
+        {isLoading 
           ? <p> Carregando ... </p>
           : pokemon && pokemon.map((poke)=>{
             return(
               <div key={poke.id}>
-              <img src={`${imagem + poke.id}.png`} alt={`Imagem ilustrativa do pokemon ${poke.name}`}/>
+              <img onClick={() => navigate(`/pokemon/${poke.name}`)} src={`${imagem + poke.id}.png`} alt={`Imagem ilustrativa do pokemon ${poke.name}`}/>
                 <p>{poke.name}</p>
-                <button onClick={() => teste(poke)}>Capturar pokemón</button>
+                <button onClick={() => capturaPoke(poke)}>Capturar pokemón</button>
               </div>
             )
           })

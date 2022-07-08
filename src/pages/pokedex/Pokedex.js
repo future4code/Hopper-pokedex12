@@ -11,12 +11,30 @@ const Pokedex = () => {
   const [pokemons, setPokemons] = useState([])
 
   useEffect(() => {
-    teste()
+    colocaNoStorage()
   }, [])
 
-  const teste = () => {
+  const colocaNoStorage = () => {
     setPokemons(JSON.parse(localStorage.getItem('pokemaos')))
   }
+
+  const removeDaPokedex = (id) => {
+    let novaPokedex = []
+    pokemons.map(pokemon => {
+      if(pokemon.id !== id) {
+        novaPokedex.push(pokemon)
+        setPokemons(novaPokedex)
+        localStorage.setItem('pokemaos', JSON.stringify(novaPokedex))
+      } else { 
+        novaPokedex.length === 0 && window.localStorage.clear('pokemaos')
+        setPokemons(novaPokedex)
+      }
+      return novaPokedex
+    })
+  }
+
+  console.log(pokemons)
+  pokemons.sort((anterior, novo) => anterior.id - novo.id)
 
   return (
     <Container>
@@ -26,7 +44,7 @@ const Pokedex = () => {
           <div key={poke.id}>
             <img src={`${imagem + poke.id}.png`} alt={`Imagem ilustrativa do pokemon ${poke.name}`} />
             <p>{poke.name}</p>
-            <button>Retirar da Pokédex</button>
+            <button onClick={() => removeDaPokedex(poke.id)}>Retirar da Pokédex</button>
           </div>
         ))}
       </Div>
