@@ -47,20 +47,12 @@ const HomePage = () => {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('pokemaos'))
-    data.length > 0 && setPokemaos(data)
+    data !== null && data.length > 0 && setPokemaos(data)
   }, [])
 
   const capturaPoke = (poke) => {
-    if(pokemaos.length === 0){
-      setPokemaos([...pokemaos, poke])
-    } else {
-      const taNaPokedex = pokemaos.find(item => item.name === poke.name)
-      if(taNaPokedex) {
-        alert('Este pokémon já está em sua pokedex')
-      } else {
-        setPokemaos([...pokemaos, poke])
-      }
-    }
+    const taNaPokedex = pokemaos.find(item => item.name === poke.name)
+    taNaPokedex ? alert('Este pokémon já está em sua pokedex') : setPokemaos([...pokemaos, poke])
   }
 
   useEffect(() => {

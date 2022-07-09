@@ -42,7 +42,7 @@ const Pokedex = () => {
       <Div>
         {pokemons && pokemons.map((poke) => (
           <div key={poke.id}>
-            <img src={`${imagem + poke.id}.png`} alt={`Imagem ilustrativa do pokemon ${poke.name}`} />
+            <img onClick={() => navigate(`/pokemon/${poke.name}`)} src={`${imagem + poke.id}.png`} alt={`Imagem ilustrativa do pokemon ${poke.name}`} />
             <p>{poke.name}</p>
             <button onClick={() => removeDaPokedex(poke.id)}>Retirar da Pokédex</button>
           </div>

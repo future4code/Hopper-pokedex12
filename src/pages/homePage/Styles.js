@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const Div = styled.div`
     display: flex;
-    width: 1024px;
+    max-width: 1024px;
     flex-wrap:wrap;
     gap: 1em;
     margin: 50px auto;
     justify-content: center;
     align-items: center;
-
 
     div{
         display: flex;
