@@ -7,7 +7,7 @@
 
 ### O que funciona
 - Transição de páginas
-- Pokedéx
+- Pokédex
 - Requisições
 - Visualização de detalhes de cada pokémon
 
