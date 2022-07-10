@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  height: 10vh;
+  height: 12.5vh;
   background: #3470b4F9;
   nav {
     height: 100%;
@@ -14,7 +14,7 @@ export const Container = styled.div`
         color: #feca04;
         cursor: pointer;
         img {
-          width: 9em;
+          height: 12.5vh;
         }
       }
     }
